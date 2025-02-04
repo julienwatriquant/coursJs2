@@ -4,6 +4,7 @@ const input = document.querySelector("input[type = text]");
 console.log(input);
 const select  = document.querySelector("select");
 console.log(select);
+const questionContainer = document.querySelector(".click-event");
 
 let pseudo = "";
 let language = "";
@@ -84,9 +85,49 @@ boxes.forEach((box)  =>{
         // a chaque fois que je click sur un éléments lié a box celui ci se reduira au click grace au     transform = "scale(0.7)"
     });
 });
-     
-  
+//                        new commit sur coursJs2
+// -----------------------------------------------------------------------------------------
+// addEventListener vs onclick
 
-   
+// document.body.onclick = () =>{
+//     console.log("click");
+    
+// }
+// document.body.onclick = () =>{
+//     console.log("pas bien");
+    
+// }
+// en utilisant onclick nous écrasons le premier événement
+// le résultat est "pas bien"
+
+// privilégier la methode addEventListener
+
+// -------------------------------------------------------------------------------------------
+//           mode  Usecapture et Bubbling
+
+// Ce phenomene de priorité s'appelle Usecapture  et Bubbling => fin 
+  // de base l'eventListener est paramétré en mode Bubbling (false)
+  // si l'on passe en mode Usecapture et que l'on rajoute en argument true l'événement passe prioritaire
+
+   // pour approfondir aller sur la doc https://gomakethings.com/
+
+
+document.body.addEventListener("click" , ()=>{
+    console.log("test");  
+    
+})
+document.body.addEventListener("click" , ()=>{
+    console.log("hello");
+ // en passant l'élément true le deuxieme evenement est prioritaire cela affichera hello et ensuite test   . 
+}, true)
+
+// et si je retire l'argument true test reviens prioritaire et passe en mode Bubbling (false)
+     
+  questionContainer.addEventListener("click" ,(e) =>{
+    alert("salut");
+    e.stopPropagation(); // permet d'isoler le click parmi les autres
+    
+  })
+
 
 
